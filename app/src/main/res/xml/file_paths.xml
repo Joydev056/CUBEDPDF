@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path
+        name="pdf_cache"
+        path="cubedpdf_cache/" />
+    <files-path
+        name="pdf_files"
+        path="cubedpdf_documents/" />
+</paths>

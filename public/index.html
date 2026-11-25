@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CubedPDF — Privacy &amp; Legal Portal</title>
+  <meta name="description" content="Official CubedPDF Android app legal portal for Privacy Policy and Account Deletion." />
+  <style>
+    :root {
+      --bg: #0a112e;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --accent: #4f46e5;
+      --danger: #dc2626;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top right, #312e81 0%, #0a112e 60%, #050816 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+    .panel {
+      width: 100%;
+      max-width: 640px;
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: 24px;
+      padding: clamp(24px, 5vw, 40px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      text-align: center;
+    }
+    .logo-pill {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.85rem;
+    }
+    .subtitle {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .links {
+      display: grid;
+      gap: 14px;
+      text-align: left;
+    }
+    .link-card {
+      display: block;
+      padding: 18px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--ink);
+      background: #f8fafc;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .link-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
+    }
+    .link-card.danger:hover {
+      border-color: var(--danger);
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.12);
+    }
+    .link-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .link-card span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .foot {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .foot a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  </style>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var page = (params.get("page") || window.location.hash.replace("#", "")).toLowerCase();
+      if (page === "privacy" || page === "privacy-policy") {
+        window.location.replace("./privacy-policy.html");
+      } else if (page === "delete" || page === "delete-account" || page === "account-deletion") {
+        window.location.replace("./delete-account.html");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <main class="panel">
+    <div class="logo-pill" aria-hidden="true">PDF</div>
+    <h1>CubedPDF</h1>
+    <p class="subtitle">Official Privacy Policy &amp; Account Deletion Portal for CubedPDF Android (<code>com.aistudio.pdftools.xqmztb</code>).</p>
+
+    <div class="links">
+      <a class="link-card" href="./privacy-policy.html">
+        <strong>Privacy Policy &rarr;</strong>
+        <span>Learn how CubedPDF processes all 24 PDF tools locally on-device and protects optional cloud data.</span>
+      </a>
+      <a class="link-card danger" href="./delete-account.html">
+        <strong>Account &amp; Data Deletion &rarr;</strong>
+        <span>Step-by-step in-app deletion guide and online web deletion request form.</span>
+      </a>
+    </div>
+
+    <p class="foot">
+      Support: <a href="mailto:joydigitalworld2023@gmail.com">joydigitalworld2023@gmail.com</a>
+    </p>
+  </main>
+</body>
+</html>

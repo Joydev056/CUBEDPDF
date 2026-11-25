@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — CubedPDF</title>
+  <meta name="description" content="Official Privacy Policy for CubedPDF Android application (com.aistudio.pdftools.xqmztb)." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-soft: #eef2ff;
+      --success: #047857;
+      --success-bg: #ecfdf5;
+      --danger: #dc2626;
+      --navy: #0a112e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: linear-gradient(135deg, #0a112e 0%, #1e1b4b 55%, #312e81 100%);
+      color: #ffffff;
+      padding: 40px 20px 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      transition: background 0.15s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+      line-height: 1.2;
+    }
+    .meta {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+    main {
+      max-width: 860px;
+      margin: -18px auto 48px;
+      padding: 0 16px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: clamp(20px, 4vw, 34px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+    .highlight-banner {
+      background: var(--success-bg);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--success);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .highlight-banner strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+    h2 {
+      margin: 28px 0 10px;
+      font-size: 1.2rem;
+      color: var(--ink);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    h2:first-of-type { margin-top: 8px; }
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+    ul {
+      margin: 0 0 14px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--ink); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      font-size: 0.92rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #f1f5f9;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    td { color: var(--muted); }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 1px solid var(--border);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .btn-danger {
+      background: #ffffff;
+      color: var(--danger);
+      border-color: #fca5a5;
+    }
+    code {
+      background: #f1f5f9;
+      color: var(--ink);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.88em;
+    }
+    footer {
+      max-width: 860px;
+      margin: 0 auto 36px;
+      padding: 0 16px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.86rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    @media (max-width: 600px) {
+      th, td { padding: 9px 8px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand-badge" href="./index.html">
+          <span class="brand-icon" aria-hidden="true">PDF</span>
+          <span>CubedPDF</span>
+        </a>
+        <nav class="nav-links" aria-label="Legal navigation">
+          <a href="./index.html">Home</a>
+          <a href="./privacy-policy.html" class="active">Privacy Policy</a>
+          <a href="./delete-account.html">Account Deletion</a>
+        </nav>
+      </div>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Application: <strong>CubedPDF</strong> (<code>com.aistudio.pdftools.xqmztb</code>) &bull; Effective Date: November 25, 2026</p>
+    </div>
+  </header>
+
+  <main>
+    <article class="card">
+      <div class="highlight-banner">
+        <strong>Your PDF documents stay on your device.</strong>
+        All 24 PDF editing, merging, splitting, compression, signing, AES-256-GCM password protection, rotation, and ML Kit OCR text extraction tools run 100% locally on your Android device. CubedPDF never uploads your PDF files or images to external servers.
+      </div>
+
+      <p>
+        This Privacy Policy explains how <strong>CubedPDF</strong> ("we", "our", or "the App") handles information when you use our Android application. By using CubedPDF, you agree to the practices described below.
+      </p>
+
+      <h2>1. On-Device Document Processing &amp; Zero Broad Storage Permissions</h2>
+      <ul>
+        <li><strong>Local Processing Only:</strong> Every PDF operation—including Merge, Split, Compress, Edit, Sign, Protect/Unlock, Rotate, Rearrange, Redact, Watermark, Page Numbers, Compare, Overlay, Images to PDF, PDF to Images, Create PDF, Webpage to PDF, and On-Device ML Kit OCR—executes directly on your device.</li>
+        <li><strong>No Document Uploads:</strong> Your PDF documents, signatures, annotations, extracted text, and encryption passwords are never transmitted to or stored on our servers.</li>
+        <li><strong>Zero Broad Storage Permissions:</strong> CubedPDF does <em>not</em> request broad storage permissions (such as <code>READ_EXTERNAL_STORAGE</code>, <code>WRITE_EXTERNAL_STORAGE</code>, <code>READ_MEDIA_IMAGES</code>, or <code>MANAGE_EXTERNAL_STORAGE</code>). The App uses Android's built-in Storage Access Framework (SAF) and Android Photo Picker so it can only access files you explicitly choose.</li>
+      </ul>
+
+      <h2>2. Information We Collect</h2>
+      <p>You can use CubedPDF completely offline in <strong>Guest Mode</strong> without creating an account. If you optionally sign in, we collect only the minimum information required to provide cloud profile preferences and recent-file metadata sync:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Data Category</th>
+            <th>Details Collected</th>
+            <th>Purpose</th>
+            <th>Optional / Required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Account Info</strong></td>
+            <td>Display name (first &amp; last name), email address, authentication provider ID (Google Sign-In or Email/Password), and workspace role preference.</td>
+            <td>Account authentication, profile display, and syncing user preferences across devices via Firebase Authentication &amp; Cloud Firestore.</td>
+            <td>Optional (Guest Mode requires no account)</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud History Metadata</strong></td>
+            <td>Document file name, last tool used, page count, file size, and timestamp (never the PDF file contents).</td>
+            <td>Optional cross-device recent-file history stored in your private Firestore subcollection (<code>users/{uid}/recent_docs</code>).</td>
+            <td>Optional (only when signed in &amp; synced)</td>
+          </tr>
+          <tr>
+            <td><strong>Local Recent Files</strong></td>
+            <td>Stored strictly on your device in a local Room SQLite database.</td>
+            <td>Quick access to recently edited documents on your device. Excluded from Android Auto Backup.</td>
+            <td>Device-local only</td>
+          </tr>
+          <tr>
+            <td><strong>Privacy-First App Analytics</strong></td>
+            <td>Aggregate, non-personal feature usage events (such as which PDF tool was opened and whether an operation succeeded) via Google Analytics for Firebase.</td>
+            <td>Understanding app reliability and improving PDF tools. Never includes file contents, passwords, or email addresses.</td>
+            <td>Aggregate diagnostics only</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. Advertising ID &amp; Third-Party Tracking</h2>
+      <ul>
+        <li><strong>No Ads &amp; No Ad Tracking:</strong> CubedPDF does not display third-party advertisements and does not sell or share your personal data with data brokers.</li>
+        <li><strong>Advertising ID Disabled:</strong> The Android Advertising ID permission (<code>com.google.android.gms.permission.AD_ID</code>) and Ad Services permissions are explicitly removed from the application manifest, and Firebase Analytics ad personalization signals are disabled.</li>
+      </ul>
+
+      <h2>4. Data Security &amp; Encryption</h2>
+      <ul>
+        <li><strong>Encryption in Transit:</strong> All network connections (Firebase Authentication, Cloud Firestore, and optional HTTPS webpage snapshots) use HTTPS/TLS. Cleartext HTTP traffic is disabled app-wide.</li>
+        <li><strong>Local Encryption:</strong> Password-protected PDF vaults created with CubedPDF use standard AES-256-GCM encryption with PBKDF2-HMAC-SHA256 key derivation and random salts/IVs. Passwords are never logged or stored in Firestore.</li>
+        <li><strong>Zero-Trust Access Control:</strong> Cloud Firestore security rules enforce strict owner-only isolation (<code>request.auth.uid == userId</code>) so no other user can read or modify your synced profile or metadata.</li>
+      </ul>
+
+      <h2>5. Data Retention &amp; Account Deletion</h2>
+      <p>
+        We retain your optional Firebase Authentication account and Cloud Firestore records only while your account remains active. You have full control to delete your account and all cloud data at any time:
+      </p>
+      <ul>
+        <li><strong>Instant In-App Deletion:</strong> Open <strong>CubedPDF</strong> &rarr; tap your <strong>Profile</strong> button &rarr; tap <strong>Delete Account &amp; Cloud Data</strong> &rarr; confirm (and re-verify your identity if prompted). Your Cloud Firestore profile, synced document history, and Firebase Authentication account are deleted immediately.</li>
+        <li><strong>Web Deletion Request:</strong> If you have uninstalled the app, you may submit a deletion request anytime via our public <a href="./delete-account.html">Account &amp; Data Deletion page</a>.</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-danger" href="./delete-account.html">Go to Account Deletion Page</a>
+        <a class="btn btn-primary" href="mailto:joydigitalworld2023@gmail.com?subject=CubedPDF%20Privacy%20Inquiry">Contact Developer Support</a>
+      </div>
+
+      <h2>6. Third-Party Service Providers</h2>
+      <p>CubedPDF uses the following Google services strictly for optional sign-in, private cloud sync, on-device OCR, and aggregate diagnostics:</p>
+      <ul>
+        <li><strong>Firebase Authentication &amp; Cloud Firestore</strong> (Google LLC) — optional user sign-in and private profile/metadata sync.</li>
+        <li><strong>Google Analytics for Firebase</strong> (Google LLC) — aggregate feature usage with Advertising ID collection disabled.</li>
+        <li><strong>Google ML Kit Text Recognition</strong> (Google LLC) — on-device optical character recognition (OCR) for scanned PDFs and images.</li>
+      </ul>
+      <p>Learn more in Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</p>
+
+      <h2>7. Children's Privacy</h2>
+      <p>
+        CubedPDF is a general-purpose document utility and is not directed to children under the age of 13 (or the minimum digital consent age in your jurisdiction). We do not knowingly collect personal information from children. If you believe a child has provided personal information via an optional account, please contact us immediately so we can delete it.
+      </p>
+
+      <h2>8. Changes to This Privacy Policy</h2>
+      <p>
+        We may update this Privacy Policy periodically to reflect improvements to CubedPDF or legal requirements. Updates will be posted on this page with an updated effective date.
+      </p>
+
+      <h2>9. Contact Us</h2>
+      <p>
+        If you have questions about this Privacy Policy, your data rights, or account deletion, please contact the CubedPDF developer team at:
+        <br />
+        <strong>Email:</strong> <a href="mailto:joydigitalworld2023@gmail.com">joydigitalworld2023@gmail.com</a>
+      </p>
+    </article>
+  </main>
+
+  <footer>
+    &copy; 2026 CubedPDF &bull; <a href="./privacy-policy.html">Privacy Policy</a> &bull; <a href="./delete-account.html">Delete Account</a>
+  </footer>
+</body>
+</html>

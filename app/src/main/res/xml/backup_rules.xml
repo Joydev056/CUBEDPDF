@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude domain="file" path="cubedpdf_documents/" />
+    <exclude domain="database" path="cubedpdf_recent_files.db" />
+</full-backup-content>

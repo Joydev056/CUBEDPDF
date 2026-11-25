@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated CubedPDF user profile and workspace preferences stored privately per user. Never stores passwords.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Authentication UID matching the owning user."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owning user UID matching document ID and request.auth.uid."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Full display name shown in the CubedPDF dashboard and account menu."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address associated with the authenticated Firebase account (any email provider)."
+        },
+        "photoUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional profile avatar URL."
+        },
+        "workspaceRole": {
+          "type": "string",
+          "enum": ["Personal", "Business", "Student", "Legal & Finance", "Creative"],
+          "description": "Selected workspace role for tailored PDF workflows."
+        },
+        "provider": {
+          "type": "string",
+          "enum": ["password", "google.com"],
+          "description": "Firebase Authentication identity provider."
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "description": "Whether the user's email address has been verified by Firebase Authentication."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Immutable creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "uid",
+        "userId",
+        "firstName",
+        "lastName",
+        "displayName",
+        "workspaceRole",
+        "provider",
+        "emailVerified",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CloudRecentDoc": {
+      "title": "CloudRecentDoc",
+      "description": "Synced metadata of a user's recent PDF document activity in CubedPDF.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Authentication UID of the owning user."
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Display filename of the PDF document."
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "MIME type of the document."
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "description": "File size in bytes."
+        },
+        "pageCount": {
+          "type": "integer",
+          "description": "Number of pages in the document."
+        },
+        "lastToolId": {
+          "type": "string",
+          "description": "Identifier of the last PDF tool used on this document."
+        },
+        "lastToolName": {
+          "type": "string",
+          "description": "Display name of the last PDF tool used on this document."
+        },
+        "summaryNote": {
+          "type": "string",
+          "description": "Short summary of the last action performed."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Immutable creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "fileName",
+        "mimeType",
+        "sizeBytes",
+        "pageCount",
+        "lastToolId",
+        "lastToolName",
+        "summaryNote",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private user account profile and workspace preferences scoped strictly to the authenticated owner."
+    },
+    "/users/{userId}/recent_docs/{docId}": {
+      "schema": { "$ref": "#/entities/CloudRecentDoc" },
+      "description": "Private cloud-synced recent PDF document history scoped strictly to the owning user."
+    }
+  }
+}

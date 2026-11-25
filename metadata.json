@@ -1,0 +1,6 @@
+{
+  "name": "CubedPDF",
+  "description": "An all-in-one PDF platform for creating, editing, converting, organizing, securing, and optimizing PDF files.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

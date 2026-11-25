@@ -1,0 +1,53 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-android-pdftools-8b64c599-303a-4a27-9292-642dd543c1d1",
+      "rules": "firestore.rules"
+    }
+  ],
+  "emulators": {
+    "firestore": {
+      "host": "127.0.0.1",
+      "port": 8085
+    },
+    "ui": {
+      "enabled": false
+    }
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "assets/aistudio/**"
+    ],
+    "redirects": [
+      {
+        "source": "/privacy",
+        "destination": "/privacy-policy.html",
+        "type": 301
+      },
+      {
+        "source": "/privacy-policy",
+        "destination": "/privacy-policy.html",
+        "type": 301
+      },
+      {
+        "source": "/delete",
+        "destination": "/delete-account.html",
+        "type": 301
+      },
+      {
+        "source": "/delete-account",
+        "destination": "/delete-account.html",
+        "type": 301
+      },
+      {
+        "source": "/account-deletion",
+        "destination": "/delete-account.html",
+        "type": 301
+      }
+    ]
+  }
+}

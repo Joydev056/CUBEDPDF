@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account &amp; Data Deletion — CubedPDF</title>
+  <meta name="description" content="Official Account and Cloud Data Deletion instructions and web request form for CubedPDF Android app (com.aistudio.pdftools.xqmztb)." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #4f46e5;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --success: #047857;
+      --success-bg: #ecfdf5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: linear-gradient(135deg, #0a112e 0%, #1e1b4b 55%, #4c1d95 100%);
+      color: #ffffff;
+      padding: 40px 20px 36px;
+    }
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.65rem, 3.5vw, 2.25rem);
+      line-height: 1.2;
+    }
+    .meta {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+    main {
+      max-width: 860px;
+      margin: -18px auto 48px;
+      padding: 0 16px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: clamp(20px, 4vw, 34px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+    .notice {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: #991b1b;
+      border-radius: 14px;
+      padding: 15px 18px;
+      margin-bottom: 22px;
+      font-size: 0.94rem;
+    }
+    h2 {
+      margin: 26px 0 10px;
+      font-size: 1.18rem;
+      color: var(--ink);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    h2:first-of-type { margin-top: 8px; }
+    p { margin: 0 0 12px; color: var(--muted); }
+    ol, ul { margin: 0 0 14px; padding-left: 22px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--ink); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      font-size: 0.92rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { background: #f1f5f9; color: var(--ink); font-weight: 700; }
+    td { color: var(--muted); }
+    .form-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 14px;
+    }
+    .field { margin-bottom: 14px; }
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+      border-color: var(--accent);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    button, .btn-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.94rem;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .btn-delete {
+      background: var(--danger);
+      color: #ffffff;
+    }
+    .btn-delete:hover { background: #b91c1c; }
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+    .status-box {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--success-bg);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--success);
+      font-size: 0.92rem;
+    }
+    code {
+      background: #f1f5f9;
+      color: var(--ink);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.88em;
+    }
+    footer {
+      max-width: 860px;
+      margin: 0 auto 36px;
+      padding: 0 16px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.86rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand-badge" href="./index.html">
+          <span class="brand-icon" aria-hidden="true">PDF</span>
+          <span>CubedPDF</span>
+        </a>
+        <nav class="nav-links" aria-label="Legal navigation">
+          <a href="./index.html">Home</a>
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./delete-account.html" class="active">Account Deletion</a>
+        </nav>
+      </div>
+      <h1>Account &amp; Data Deletion</h1>
+      <p class="meta">Application: <strong>CubedPDF</strong> (<code>com.aistudio.pdftools.xqmztb</code>) &bull; Developer Contact: <strong>joydigitalworld2023@gmail.com</strong></p>
+    </div>
+  </header>
+
+  <main>
+    <article class="card">
+      <div class="notice">
+        <strong>Permanent Action:</strong> Deleting your CubedPDF account permanently removes your Firebase Authentication account, your profile preferences, and your synced document history from Cloud Firestore. Your local PDF files stored on your Android device are <strong>never</strong> deleted by cloud account removal.
+      </div>
+
+      <h2>Option 1: Delete Instantly Inside the CubedPDF App (Recommended)</h2>
+      <ol>
+        <li>Open the <strong>CubedPDF</strong> Android app and make sure you are signed in to the account you want to delete.</li>
+        <li>Tap your <strong>Account Profile</strong> icon in the top-right corner of the dashboard.</li>
+        <li>Scroll to the bottom of the Profile panel and tap <strong>Delete Account &amp; Cloud Data</strong>.</li>
+        <li>Confirm deletion. For your security, if your last sign-in was a while ago, CubedPDF will ask you to quickly re-verify with Google Sign-In or your password, then immediately erase your Cloud Firestore records and Firebase Authentication account.</li>
+      </ol>
+
+      <h2>Option 2: Request Account or Data Deletion Online (Without Reinstalling the App)</h2>
+      <p>
+        If you have already uninstalled CubedPDF or prefer to request deletion from the web, complete the form below or email
+        <a href="mailto:joydigitalworld2023@gmail.com">joydigitalworld2023@gmail.com</a> directly from your registered email address.
+      </p>
+
+      <form class="form-box" id="deletionForm">
+        <div class="field">
+          <label for="emailInput">Registered Account Email Address</label>
+          <input type="email" id="emailInput" required placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="providerInput">Sign-In Method</label>
+          <select id="providerInput">
+            <option value="Google Sign-In">Google Sign-In</option>
+            <option value="Email & Password">Email &amp; Password</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="scopeInput">Deletion Scope</label>
+          <select id="scopeInput">
+            <option value="Delete entire CubedPDF account and all cloud data">Delete entire CubedPDF account and all cloud data</option>
+            <option value="Delete synced Cloud History metadata only (keep account)">Delete synced Cloud History metadata only (keep account)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="notesInput">Additional Notes (Optional)</label>
+          <textarea id="notesInput" rows="3" placeholder="Any extra details to help us verify your request..."></textarea>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn-delete">Send Deletion Request via Email</button>
+          <button type="button" class="btn-secondary" id="copyBtn">Copy Request Details</button>
+        </div>
+        <div class="status-box" id="statusBox" role="status" aria-live="polite"></div>
+      </form>
+
+      <h2>What Data Is Deleted vs. Retained</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Action Upon Deletion</th>
+            <th>Timeline / Retention</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Firebase Authentication Account</strong> (UID, email, sign-in credentials)</td>
+            <td>Permanently deleted</td>
+            <td>Immediate (in-app) or within 7 business days (web request)</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud Firestore Profile</strong> (<code>users/{uid}</code>: name, workspace role)</td>
+            <td>Permanently deleted</td>
+            <td>Immediate (in-app) or within 7 business days (web request)</td>
+          </tr>
+          <tr>
+            <td><strong>Synced Document History Metadata</strong> (<code>users/{uid}/recent_docs</code>)</td>
+            <td>Permanently deleted</td>
+            <td>Immediate (in-app) or within 7 business days (web request)</td>
+          </tr>
+          <tr>
+            <td><strong>Local PDF Files &amp; Device Room Database</strong></td>
+            <td>Stored strictly on your device; never uploaded to our servers</td>
+            <td>Controlled solely by you on your device (cleared if you clear app storage or uninstall)</td>
+          </tr>
+          <tr>
+            <td><strong>Automated Infrastructure Backups &amp; Aggregate Analytics</strong></td>
+            <td>Non-identifying aggregate logs / rolling backups purged automatically</td>
+            <td>Up to 30 days standard cloud backup rotation; never restored to active user accounts</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Need assistance? Email our support team at <a href="mailto:joydigitalworld2023@gmail.com">joydigitalworld2023@gmail.com</a> or review our full <a href="./privacy-policy.html">Privacy Policy</a>.
+      </p>
+    </article>
+  </main>
+
+  <footer>
+    &copy; 2026 CubedPDF &bull; <a href="./privacy-policy.html">Privacy Policy</a> &bull; <a href="./delete-account.html">Delete Account</a>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById("deletionForm");
+      var emailInput = document.getElementById("emailInput");
+      var providerInput = document.getElementById("providerInput");
+      var scopeInput = document.getElementById("scopeInput");
+      var notesInput = document.getElementById("notesInput");
+      var statusBox = document.getElementById("statusBox");
+      var copyBtn = document.getElementById("copyBtn");
+      var supportEmail = "joydigitalworld2023@gmail.com";
+
+      function buildMessage() {
+        var email = (emailInput.value || "").trim();
+        var provider = providerInput.value;
+        var scope = scopeInput.value;
+        var notes = (notesInput.value || "").trim();
+        return [
+          "Hello CubedPDF Support,",
+          "",
+          "I am submitting a data/account deletion request for CubedPDF (com.aistudio.pdftools.xqmztb):",
+          "- Registered Email: " + (email || "[Enter your email]"),
+          "- Sign-In Method: " + provider,
+          "- Requested Action: " + scope,
+          notes ? "- Additional Notes: " + notes : null,
+          "",
+          "Please confirm once my request has been completed."
+        ].filter(Boolean).join("\n");
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = (emailInput.value || "").trim();
+        if (!email) {
+          emailInput.focus();
+          return;
+        }
+        var subject = encodeURIComponent("CubedPDF Account Deletion Request - " + email);
+        var body = encodeURIComponent(buildMessage());
+        window.location.href = "mailto:" + supportEmail + "?subject=" + subject + "&body=" + body;
+        statusBox.style.display = "block";
+        statusBox.textContent = "Your email app has been opened with a pre-filled deletion request to " + supportEmail + ". If it did not open automatically, click 'Copy Request Details' and email us from " + email + ".";
+      });
+
+      copyBtn.addEventListener("click", function () {
+        var text = buildMessage();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            statusBox.style.display = "block";
+            statusBox.textContent = "Deletion request copied! Paste and email it to " + supportEmail + " from your registered account email.";
+          });
+        } else {
+          statusBox.style.display = "block";
+          statusBox.textContent = "Please email " + supportEmail + " from your registered address with your deletion request.";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Hardened Global Primitives ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidRole(role) {
+      return role in ['Personal', 'Business', 'Student', 'Legal & Finance', 'Creative'];
+    }
+
+    function isValidProvider(provider) {
+      return provider in ['password', 'google.com'];
+    }
+
+    // --- Validation Blueprints (Anti-Update-Gap & Zero-Password Enforcement) ---
+    function isValidUserProfile(data, userId) {
+      return data.uid is string &&
+             data.uid == userId &&
+             data.uid == request.auth.uid &&
+             data.userId is string &&
+             data.userId == userId &&
+             data.userId == request.auth.uid &&
+             data.firstName is string &&
+             data.firstName.size() <= 40 &&
+             data.lastName is string &&
+             data.lastName.size() <= 40 &&
+             data.displayName is string &&
+             data.displayName.size() >= 1 &&
+             data.displayName.size() <= 80 &&
+             (!('email' in data) || data.email == null || (data.email is string && data.email.size() <= 160)) &&
+             (!('photoUrl' in data) || data.photoUrl == null || (data.photoUrl is string && data.photoUrl.size() <= 500)) &&
+             data.workspaceRole is string &&
+             isValidRole(data.workspaceRole) &&
+             data.provider is string &&
+             isValidProvider(data.provider) &&
+             data.emailVerified is bool &&
+             !('password' in data) &&
+             !('passwordHash' in data) &&
+             data.createdAt is timestamp &&
+             data.createdAt <= request.time &&
+             data.updatedAt is timestamp &&
+             data.updatedAt <= request.time;
+    }
+
+    function isValidCloudRecentDoc(data, userId) {
+      return data.userId is string &&
+             data.userId == userId &&
+             data.userId == request.auth.uid &&
+             data.fileName is string &&
+             data.fileName.size() >= 1 &&
+             data.fileName.size() <= 200 &&
+             data.mimeType is string &&
+             data.mimeType.size() >= 1 &&
+             data.mimeType.size() <= 100 &&
+             data.sizeBytes is int &&
+             data.sizeBytes >= 0 &&
+             data.pageCount is int &&
+             data.pageCount >= 1 &&
+             data.pageCount <= 10000 &&
+             data.lastToolId is string &&
+             data.lastToolId.size() >= 1 &&
+             data.lastToolId.size() <= 60 &&
+             data.lastToolName is string &&
+             data.lastToolName.size() >= 1 &&
+             data.lastToolName.size() <= 80 &&
+             data.summaryNote is string &&
+             data.summaryNote.size() <= 300 &&
+             data.createdAt is timestamp &&
+             data.createdAt <= request.time &&
+             data.updatedAt is timestamp &&
+             data.updatedAt <= request.time;
+    }
+
+    // --- Private User Profiles (PII Isolated to Owner Only, Passwords Strictly Forbidden) ---
+    match /users/{userId} {
+      allow get: if isOwner(userId) && isValidId(userId);
+      allow list: if false;
+
+      allow create: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       incoming().keys().hasAll([
+                         'uid', 'userId', 'firstName', 'lastName', 'displayName',
+                         'workspaceRole', 'provider', 'emailVerified', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'uid', 'userId', 'firstName', 'lastName', 'displayName',
+                         'email', 'photoUrl', 'workspaceRole', 'provider', 'emailVerified',
+                         'createdAt', 'updatedAt'
+                       ]) &&
+                       isValidUserProfile(incoming(), userId);
+
+      allow update: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       isValidUserProfile(incoming(), userId) &&
+                       incoming().userId == existing().userId &&
+                       (!('uid' in existing()) || incoming().uid == existing().uid) &&
+                       incoming().provider == existing().provider &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly([
+                         'uid', 'firstName', 'lastName', 'displayName',
+                         'email', 'photoUrl', 'workspaceRole', 'emailVerified', 'updatedAt'
+                       ]);
+
+      allow delete: if isOwner(userId) && isValidId(userId);
+
+      // --- Cloud-Synced Recent PDF Documents Subcollection ---
+      match /recent_docs/{docId} {
+        allow get: if isOwner(userId) && isValidId(userId) && isValidId(docId);
+        allow list: if isOwner(userId) && isValidId(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(userId) &&
+                         isValidId(docId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'fileName', 'mimeType', 'sizeBytes', 'pageCount',
+                           'lastToolId', 'lastToolName', 'summaryNote', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'fileName', 'mimeType', 'sizeBytes', 'pageCount',
+                           'lastToolId', 'lastToolName', 'summaryNote', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidCloudRecentDoc(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(userId) &&
+                         isValidId(docId) &&
+                         isValidCloudRecentDoc(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'fileName', 'mimeType', 'sizeBytes', 'pageCount',
+                           'lastToolId', 'lastToolName', 'summaryNote', 'updatedAt'
+                         ]);
+
+        allow delete: if isOwner(userId) && isValidId(userId) && isValidId(docId);
+      }
+    }
+  }
+}
